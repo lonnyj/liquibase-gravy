@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext/liquibase-gravy"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext/liquibase-gravy src/main/java/liquibase/ext/gravy/xml/liquibase-gravy.xsd">
+
+   <changeSet id="Create Test Table" author="test">
+      <createTable tableName="TEST">
+        <column name="ID" type="BIGINT">
+         <constraints nullable="false" primaryKey="true"/>
+        </column>
+    </createTable>
+   </changeSet>
+
+   <changeSet id="Test autoIncrementSupported" author="test">
+      <preConditions onFail="HALT">
+         <ext:autoIncrementSupported />
+      </preConditions>
+      <addAutoIncrement tableName="TEST" columnName="ID" columnDataType="BIGINT"/>
+   </changeSet>
+</databaseChangeLog>
